@@ -1,0 +1,36 @@
+{
+  "name": "unite/unisys-installer",
+  "description": "Unisys skeleton installer for api or frontend.",
+  "keywords": [
+    "unisys",
+    "unisys api",
+    "unisys frontend",
+    "unite",
+    "weareunite",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladimír Žilka",
+      "email": "vlado.zilka@weareunite.com",
+      "homepage": "https://weareunite.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-zip": "*",
+    "symfony/console": "~3.0|~4.0",
+    "symfony/process": "~3.0|~4.0"
+  },
+  "autoload": {
+    "classmap": [],
+    "psr-4": {
+      "Unite\\UnisysInstaller\\": "src/"
+    }
+  },
+  "bin": [
+    "unisys"
+  ]
+}
