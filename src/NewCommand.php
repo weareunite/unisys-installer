@@ -94,7 +94,7 @@ class NewCommand extends Command
         $this->pushToCommands([
             $this->pathToComposer.' create-project --prefer-dist laravel/laravel '.$this->projectDir.' "5.6.*" ',
             'cd '.$this->projectDir,
-            $this->pathToComposer.' require "unite/unisys-api"',
+            $this->pathToComposer.' require "weareunite/unisys-api"',
             '"'.PHP_BINARY.'" artisan unisys-api:init-env',
             '"'.PHP_BINARY.'" artisan unisys-api:install'
         ]);
@@ -103,7 +103,7 @@ class NewCommand extends Command
     protected function handleFrontendInstallation()
     {
         $this->pushToCommands([
-            $this->pathToComposer.' require "unite/unisys-frontend"',
+            $this->pathToComposer.' require "weareunite/unisys-frontend"',
             'npm install -g @angular/cli',
             'npm install',
             'ng new '.$this->projectDir,
