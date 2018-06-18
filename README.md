@@ -21,7 +21,7 @@ unisys new project_name
 
 This is going to install all dependencies, publish all important vendor configs, migrate, setup some configs and run migrations.
 
-Command is going to generate and print the password for the default administrator account. Do not remember to save this password.
+Command is going to generate and print the password for the default administrator account. Do not forget to save this password.
 
 ## License
 
