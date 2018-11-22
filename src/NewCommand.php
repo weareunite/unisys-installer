@@ -1,6 +1,6 @@
 <?php
 
-namespace Unite\UnisysInstaller\Console;
+namespace Unite\UnisysInstaller;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
