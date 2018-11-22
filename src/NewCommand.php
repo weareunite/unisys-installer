@@ -56,7 +56,7 @@ class NewCommand extends Command
     {
         $this->pathToComposer = $this->findComposer();
 
-        $this->projectDir = "\"".$input->getArgument('name') ?: '.'."\"";
+        $this->projectDir = "\"".$input->getArgument('name')."\"";
 
         $skeletonType = $this->aksForType($input, $output);
 
@@ -112,7 +112,7 @@ class NewCommand extends Command
     protected function handleApiInstallation()
     {
         $this->pushToCommands([
-            $this->pathToComposer.' create-project --prefer-dist laravel/laravel '.$this->projectDir.' "5.6.*" ',
+            $this->pathToComposer.' create-project --prefer-dist laravel/laravel '.$this->projectDir.' "5.6.*"',
             'cd '.$this->projectDir,
             $this->pathToComposer.' require "weareunite/unisys-api"',
             '"'.PHP_BINARY.'" artisan unisys-api:init-env',
@@ -171,4 +171,3 @@ class NewCommand extends Command
         $this->processes[] = $process;
     }
 }
-
