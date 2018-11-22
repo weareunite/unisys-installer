@@ -162,15 +162,13 @@ class NewCommand extends Command
             $isTty = true;
         }
 
-        foreach ($this->commands as $command) {
-            $process = new Process($command, null, null, null, null);
+        $process = new Process(implode(' && ', $this->commands), null, null, null, null);
 
-            if($isTty) {
-                $process->setTty(true);
-            }
-
-            $this->processes[] = $process;
+        if($isTty) {
+            $process->setTty(true);
         }
+
+        $this->processes[] = $process;
     }
 }
 
