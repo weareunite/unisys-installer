@@ -2,6 +2,7 @@
 
 namespace Unite\UnisysInstaller;
 
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -22,6 +23,8 @@ class NewCommand extends Command
 
     protected $projectDir;
 
+    protected $types = [self::TYPE_API, self::TYPE_FRONTEND];
+
     /**
      * Configure the command options.
      *
@@ -36,9 +39,9 @@ class NewCommand extends Command
             ->addOption(
                 'type',
                 null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                InputOption::VALUE_REQUIRED,
                 'Which type of skeleton you want?',
-                [self::TYPE_API, self::TYPE_FRONTEND])
+                null)
         ;
     }
 
@@ -53,9 +56,9 @@ class NewCommand extends Command
     {
         $this->pathToComposer = $this->findComposer();
 
-        $this->projectDir = "\"".$input->getArgument('name')."\"";
+        $this->projectDir = "\"".$input->getArgument('name') ?: '.'."\"";
 
-        $skeletonType = $input->getOption('type');
+        $skeletonType = $this->aksForType($input, $output);
 
         $output->writeln('<info>Creating UniSys '.$skeletonType.' skeleton ...</info>');
 
@@ -73,6 +76,23 @@ class NewCommand extends Command
         $this->executeProcesses($output);
 
         $output->writeln('<comment>UniSys skeleton for '.$skeletonType.' was generated. Save Earth!</comment>');
+    }
+
+    protected function aksForType(InputInterface $input, OutputInterface $output)
+    {
+        if($input->getOption('type')) {
+            return $input->getOption('type');
+        }
+
+        $helper = $this->getHelper('question');
+        $question = new ChoiceQuestion(
+            'Which type of skeleton you want?',
+            $this->types,
+            0
+        );
+        $question->setErrorMessage('Type %s is invalid.');
+
+        return $helper->ask($input, $output, $question);
     }
 
     /**
