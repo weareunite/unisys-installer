@@ -11,4 +11,5 @@ if (file_exists(__DIR__.'/../../autoload.php')) {
 
 $app = new Symfony\Component\Console\Application('Unisys API Installer', '1.0.0');
 $app->add(new Unite\UnisysInstaller\NewCommand);
+$app->add(new Unite\UnisysInstaller\UpdateCommand);
 $app->run();
